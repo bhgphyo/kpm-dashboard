@@ -14,6 +14,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -38,23 +44,44 @@ jobs:
           cp -r fonts public/
           cp -r images public/
 
-      - name: Install Capacitor
+      - name: Install Capacitor CLI
         run: npm install @capacitor/core @capacitor/cli
+
+      - name: Add Android Platform
+        run: npx cap add android
+
+      - name: Decode Keystore
+        if: env.KEYSTORE_FILE != ''
+        run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > android/release-keystore.jks
+        shell: bash
 
       - name: Sync Capacitor
         run: npx cap sync android
         env:
           ANDROID_HOME: ${{ env.ANDROID_HOME }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
 
       - name: Build Release APK
-        run: cd android && ./gradlew assembleRelease
+        run: |
+          cd android
+          ./gradlew assembleRelease -Pandroid.injected.signing.storeFile=release-keystore.jks \
+            -Pandroid.injected.signing.storePassword=${{ secrets.KEYSTORE_PASSWORD }} \
+            -Pandroid.injected.signing.keyAlias=${{ secrets.KEY_ALIAS }} \
+            -Pandroid.injected.signing.keyPassword=${{ secrets.KEY_PASSWORD }}
         env:
           ANDROID_HOME: ${{ env.ANDROID_HOME }}
 
-      - name: Upload APK
+      - name: Build Debug APK
+        run: cd android && ./gradlew assembleDebug
+        env:
+          ANDROID_HOME: ${{ env.ANDROID_HOME }}
+
+      - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:
-          name: kpm-dashboard.apk
+          name: kpm-dashboard-release.apk
           path: android/app/build/outputs/apk/release/app-release.apk
 
       - name: Upload Debug APK
@@ -70,18 +97,27 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Download APK
+      - name: Download Release APK
         uses: actions/download-artifact@v4
         with:
-          name: kpm-dashboard.apk
+          name: kpm-dashboard-release.apk
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: kpm-dashboard.apk
+          files: app-release.apk
           tag_name: v1.0.${{ github.run_number }}
           name: KPM Dashboard v1.0.${{ github.run_number }}
-          body: 'Android APK built from GitHub Actions'
+          body: |
+            ## Android APK Release
+            
+            Built from GitHub Actions workflow.
+            
+            ### What's New:
+            - Latest code from main branch
+            
+            ### Installation:
+            Download and install the APK on your Android device.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
