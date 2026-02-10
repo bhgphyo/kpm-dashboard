@@ -61,7 +61,7 @@ jobs:
         run: npx cap add android
 
       - name: Decode Keystore
-        if: ${{ secrets.KEYSTORE_FILE != '' }}
+        if: "${{ secrets.KEYSTORE_FILE != '' }}"
         run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > android/release-keystore.jks
         shell: bash
 
