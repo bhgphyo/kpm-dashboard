@@ -31,7 +31,6 @@ jobs:
         with:
           cmdline-tools-version: 'latest'
           accept-android-sdk-licenses: true
-          packages: 'platform-tools,platforms;android-33,build-tools;33.0.2'
 
       - name: Remove existing Android folder if exists
         run: |
@@ -62,10 +61,8 @@ jobs:
         run: npx cap add android
 
       - name: Decode Keystore
-        run: |
-          if [ -n "${{ secrets.KEYSTORE_FILE }}" ]; then
-            echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > android/release-keystore.jks
-          fi
+        if: ${{ secrets.KEYSTORE_FILE != '' }}
+        run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > android/release-keystore.jks
         shell: bash
 
       - name: Sync Capacitor
