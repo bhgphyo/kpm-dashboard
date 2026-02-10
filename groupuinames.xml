@@ -1,0 +1,381 @@
+<<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyaw Phyo Myint - Universal IT & AI Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Professional Tech Palette: Deep Space Blue & Vibrant Cyan -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            color: #f1f5f9;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            height: 350px;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: #0ea5e9;
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .brand-cisco { border-top: 4px solid #00bceb; }
+        .brand-microsoft { border-top: 4px solid #f25022; }
+        .brand-google { border-top: 4px solid #4285f4; }
+        .brand-fortinet { border-top: 4px solid #c32026; }
+
+        .gradient-text {
+            background: linear-gradient(to right, #38bdf8, #818cf8, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* AI Feature Styles */
+        .ai-glow {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.5);
+        }
+        
+        @keyframes pulse-border {
+            0% { border-color: rgba(56, 189, 248, 0.3); }
+            50% { border-color: rgba(56, 189, 248, 1); }
+            100% { border-color: rgba(56, 189, 248, 0.3); }
+        }
+
+        .ai-active {
+            animation: pulse-border 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
+
+    <!-- Hero Section -->
+    <header class="py-20 px-6 text-center">
+        <div class="mb-4 inline-block px-4 py-1 bg-sky-500/10 border border-sky-500/20 rounded-full text-xs font-bold text-sky-400 tracking-widest uppercase">
+            Cross-Platform Certified Tech Lead
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter text-white">
+            KYAW <span class="gradient-text">PHYO MYINT</span>
+        </h1>
+        <p class="text-xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+            Multi-Vendor Specialist: Expert in Infrastructure Deployment, Cyber Security, Cloud Solutions & Artificial Intelligence.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24 space-y-12">
+
+        <!-- AI Assistant Section (NEW) -->
+        <section class="glass-panel p-8 ai-glow">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-black text-white flex items-center">
+                        <span class="mr-3">✨</span> Gemini AI Career Assistant
+                    </h2>
+                    <p class="text-slate-400 mt-2">အစ်ကို့ရဲ့ Profile ကို အခြေခံပြီး AI နဲ့ အလုပ်အကိုင် အကြံဉာဏ်များ ရယူပါ။</p>
+                </div>
+                <div id="ai-status" class="hidden flex items-center space-x-2 text-sky-400 font-bold">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                    </span>
+                    <span>AI စဉ်းစားနေသည်...</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button onclick="generateCareerAdvice()" class="p-6 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 rounded-2xl transition text-left group">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition">🚀</div>
+                    <h3 class="font-bold text-white uppercase text-sm tracking-widest">✨ Career Roadmap</h3>
+                    <p class="text-xs text-slate-400 mt-2">အသင့်တော်ဆုံး ရာထူးနှင့် လစာနှုန်းထား ခန့်မှန်းချက်များ။</p>
+                </button>
+                <button onclick="generateInterviewPrep()" class="p-6 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 rounded-2xl transition text-left group">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition">🎤</div>
+                    <h3 class="font-bold text-white uppercase text-sm tracking-widest">✨ Interview Prep</h3>
+                    <p class="text-xs text-slate-400 mt-2">နည်းပညာဆိုင်ရာ မေးခွန်းများနှင့် ပြင်ဆင်ရန် အချက်များ။</p>
+                </button>
+                <button onclick="generateSkillAnalysis()" class="p-6 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-2xl transition text-left group">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition">📈</div>
+                    <h3 class="font-bold text-white uppercase text-sm tracking-widest">✨ Skill Gap Analysis</h3>
+                    <p class="text-xs text-slate-400 mt-2">နောက်ထပ် ဘာတွေထပ်သင်သင့်လဲ? AI အကြံပေးချက်။</p>
+                </button>
+            </div>
+
+            <div id="ai-response-container" class="hidden mt-8 p-6 bg-black/40 border border-white/5 rounded-2xl animate-fade-in">
+                <div id="ai-response-text" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line"></div>
+            </div>
+        </section>
+
+        <!-- Core Mastery Radar -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="glass-panel p-8">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <span class="mr-3">🛡️</span> Strategic Skills Radar
+                </h2>
+                <div class="chart-container">
+                    <canvas id="universalRadar"></canvas>
+                </div>
+            </div>
+
+            <!-- Big Stat Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="glass-panel p-6 flex flex-col justify-center brand-cisco">
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Cisco Academy</p>
+                    <p class="text-4xl font-black mt-2">5 <span class="text-lg text-sky-400">Badges</span></p>
+                    <p class="text-xs text-slate-400 mt-2">Network, Hardware & AI Career Ready</p>
+                </div>
+                <div class="glass-panel p-6 flex flex-col justify-center brand-fortinet">
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Fortinet</p>
+                    <p class="text-4xl font-black mt-2">FCA <span class="text-lg text-red-500">& FCF</span></p>
+                    <p class="text-xs text-slate-400 mt-2">Official Security Associate Certification</p>
+                </div>
+                <div class="glass-panel p-6 flex flex-col justify-center brand-google">
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Google Cloud</p>
+                    <p class="text-4xl font-black mt-2">8 <span class="text-lg text-blue-500">AI Badges</span></p>
+                    <p class="text-xs text-slate-400 mt-2">Generative AI Specialist Track</p>
+                </div>
+                <div class="glass-panel p-6 flex flex-col justify-center brand-microsoft">
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Microsoft</p>
+                    <p class="text-4xl font-black mt-2">29 <span class="text-lg text-orange-500">Credentials</span></p>
+                    <p class="text-xs text-slate-400 mt-2">Azure Fundamentals & AI Foundry Expert</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specific Brand Focus: CISCO SECTION -->
+        <section class="glass-panel p-8 brand-cisco bg-sky-950/10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-black text-white">Cisco Networking Academy Credentials</h2>
+                    <p class="text-slate-400">Foundational expertise in networking, hardware, and modern technology.</p>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Cisco_logo.svg" class="h-10 mt-4 md:mt-0 opacity-80" alt="Cisco">
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">Networking Basics</h3>
+                    <p class="text-xs text-slate-400 mt-1">Mastered IP addressing, cabling, and home wireless configuration with Packet Tracer.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">Computer Hardware Basics</h3>
+                    <p class="text-xs text-slate-400 mt-1">Fundamentals of PC/Mobile assembly, repair, and advanced troubleshooting.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">Career Preparation Workshop</h3>
+                    <p class="text-xs text-slate-400 mt-1">Verified job-readiness and enrollment in Cisco Talent Bridge Matching Engine.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">AI Fundamentals (IBM)</h3>
+                    <p class="text-xs text-slate-400 mt-1">Deep learning, computer vision, and AI ethics in collaboration with IBM SkillsBuild.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">Introduction to Modern AI</h3>
+                    <p class="text-xs text-slate-400 mt-1">Hands-on practice in prompt engineering and chatbot model mechanics.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5 flex items-center justify-center italic text-slate-500 text-xs">
+                    Verifiable on credly.com/users/kyawphyomyint
+                </div>
+            </div>
+        </section>
+
+        <!-- Combined Impact: Experience & Assets -->
+        <section class="glass-panel p-8">
+            <h2 class="text-2xl font-bold mb-8">Professional Operational Scale</h2>
+            <div class="chart-container">
+                <canvas id="universalImpactBar"></canvas>
+            </div>
+        </section>
+
+        <!-- Counsellor's Final Roadmap -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="md:col-span-2 glass-panel p-8 flex flex-col justify-center">
+                <h2 class="text-3xl font-black mb-4">The Universal IT Leader Verdict</h2>
+                <p class="text-slate-300 leading-relaxed mb-6">
+                    အစ်ကို့ရဲ့ Profile ဟာ **Cisco** ရဲ့ Networking/Hardware အခြေခံကောင်းမှု၊ **Fortinet** ရဲ့ Security ကျွမ်းကျင်မှု၊ **Google/Microsoft** တို့ရဲ့ Cloud AI နည်းပညာတွေ စုစည်းနေတဲ့အတွက် အနာဂတ် IT လောကမှာ အစားထိုးလို့မရတဲ့ **"Architect Level"** တစ်ယောက် ဖြစ်နေပါပြီ။ 
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <div class="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-sm font-bold border border-emerald-500/20">READY FOR SENIOR ROLE</div>
+                    <div class="px-4 py-2 bg-sky-500/20 text-sky-400 rounded-lg text-sm font-bold border border-sky-500/20">MULTI-VENDOR CERTIFIED</div>
+                </div>
+            </div>
+            <div class="glass-panel p-8 text-center flex flex-col items-center justify-center bg-gradient-to-br from-sky-900/40 to-transparent">
+                <div class="text-5xl mb-4">🏆</div>
+                <h3 class="text-xl font-bold">Lvl 10 Profile</h3>
+                <p class="text-xs text-slate-500 mt-2 uppercase tracking-widest">Career Readiness Score</p>
+                <div class="mt-6 w-full h-3 bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-sky-500" style="width: 100%"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- Gemini API Configuration ---
+        const apiKey = ""; // Runtime provides this
+        const MODEL_NAME = "gemini-2.5-flash-preview-09-2025";
+        
+        const profileData = {
+            name: "Kyaw Phyo Myint",
+            experience: "10+ years",
+            certs: [
+                "Cisco Networking Basics", "Cisco Hardware Basics", "Fortinet FCA/FCF", 
+                "Azure Fundamentals AZ-900", "Azure Data Fundamentals DP-900", 
+                "14 Microsoft Foundry AI Badges (Vision, Speech, NLP)",
+                "8 Google Cloud Gen AI Badges"
+            ],
+            pastRoles: "IT Leader at 29 Jewellery (380+ cameras, 500+ devices), IT Technician at MIS (200+ users)"
+        };
+
+        async function callGemini(prompt) {
+            const statusEl = document.getElementById('ai-status');
+            const responseEl = document.getElementById('ai-response-container');
+            const textEl = document.getElementById('ai-response-text');
+
+            statusEl.classList.remove('hidden');
+            responseEl.classList.remove('hidden');
+            textEl.innerText = "✨ AI စဉ်းစားနေသည်...";
+
+            let retries = 5;
+            let delay = 1000;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: "မင်းက ကျွမ်းကျင်တဲ့ Career Counsellor တစ်ယောက်ပါ။ Kyaw Phyo Myint ရဲ့ IT & AI Skill တွေကို အခြေခံပြီး မြန်မာလို အားပေးစကားနဲ့ လမ်းညွှန်ချက်တွေ ပြောပေးရမယ်။ Professional ဆန်ပြီး တက်ကြွတဲ့ လေသံသုံးပါ။" }] }
+            };
+
+            while (retries > 0) {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    
+                    if (text) {
+                        textEl.innerText = text;
+                        statusEl.classList.add('hidden');
+                        return;
+                    }
+                } catch (err) {
+                    retries--;
+                    await new Promise(r => setTimeout(r, delay));
+                    delay *= 2;
+                }
+            }
+            textEl.innerText = "တောင်းပန်ပါတယ်၊ AI နဲ့ ချိတ်ဆက်ရာမှာ အခက်အခဲရှိနေပါတယ်။ ခဏနေမှ ထပ်ကြိုးစားကြည့်ပါ။";
+            statusEl.classList.add('hidden');
+        }
+
+        function generateCareerAdvice() {
+            const prompt = `Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ သူလျှောက်သင့်တဲ့ ရာထူး ၃ ခုနဲ့ မျှော်မှန်းနိုင်တဲ့ လစာ (Burmese Kyat သို့မဟုတ် USD) ကို မြန်မာလို အကြံပေးပါ။`;
+            callGemini(prompt);
+        }
+
+        function generateInterviewPrep() {
+            const prompt = `Kyaw Phyo Myint က 'Senior Cloud & Security Manager' ရာထူးလျှောက်ရင် မေးနိုင်တဲ့ ခက်ခဲတဲ့ Technical Questions ၅ ခုကို မြန်မာလို ထုတ်ပေးပါ။`;
+            callGemini(prompt);
+        }
+
+        function generateSkillAnalysis() {
+            const prompt = `အခုရထားတဲ့ Skills တွေအပြင် အနာဂတ်မှာ 'Architect Level' ဖြစ်ဖို့ ဘာ Certifications တွေ (ဥပမာ AWS, CCNA, or CISSP) ထပ်ယူသင့်သလဲဆိုတာကို အကြောင်းပြချက်နဲ့တကွ မြန်မာလို အကြံပြုပါ။`;
+            callGemini(prompt);
+        }
+
+        // --- Chart Configurations ---
+        const wrapLabel = (label) => {
+            if (label.length > 15) return [label.substring(0, 15), label.substring(15)];
+            return label;
+        };
+
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: '#94a3b8', font: { size: 11, weight: 'bold' } } }
+            }
+        };
+
+        // Radar Chart
+        new Chart(document.getElementById('universalRadar').getContext('2d'), {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapLabel('Network (Cisco)'),
+                    wrapLabel('Security (Fortinet)'),
+                    wrapLabel('Azure Cloud'),
+                    wrapLabel('Google AI'),
+                    wrapLabel('Hardware Support'),
+                    wrapLabel('Operational Lead')
+                ],
+                datasets: [{
+                    label: 'Professional Proficiency',
+                    data: [95, 90, 85, 92, 98, 90],
+                    backgroundColor: 'rgba(14, 165, 233, 0.2)',
+                    borderColor: '#0ea5e9',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#fff'
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    r: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        angleLines: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { display: false },
+                        pointLabels: { color: '#94a3b8', font: { weight: 'bold' } }
+                    }
+                }
+            }
+        });
+
+        // Bar Chart
+        new Chart(document.getElementById('universalImpactBar').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('Desktops (400+)'),
+                    wrapLabel('Cameras (380+)'),
+                    wrapLabel('User Support (200+)'),
+                    wrapLabel('Laptops (100+)'),
+                    wrapLabel('Total Credentials (40+)')
+                ],
+                datasets: [{
+                    label: 'Enterprise Metrics',
+                    data: [400, 380, 200, 100, 42],
+                    backgroundColor: ['#0ea5e9', '#6366f1', '#8b5cf6', '#ec4899', '#f59e0b'],
+                    borderRadius: 12
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#64748b' } },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

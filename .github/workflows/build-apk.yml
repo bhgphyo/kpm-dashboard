@@ -1,0 +1,87 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-level: 33
+          build-tools: 33.0.2
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create public directory
+        run: |
+          mkdir -p public
+          cp index.html public/
+          cp -r css public/
+          cp -r js public/
+          cp -r fonts public/
+          cp -r images public/
+
+      - name: Install Capacitor
+        run: npm install @capacitor/core @capacitor/cli
+
+      - name: Sync Capacitor
+        run: npx cap sync android
+        env:
+          ANDROID_HOME: ${{ env.ANDROID_HOME }}
+
+      - name: Build Release APK
+        run: cd android && ./gradlew assembleRelease
+        env:
+          ANDROID_HOME: ${{ env.ANDROID_HOME }}
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: kpm-dashboard.apk
+          path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: kpm-dashboard-debug.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+  create-release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: kpm-dashboard.apk
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: kpm-dashboard.apk
+          tag_name: v1.0.${{ github.run_number }}
+          name: KPM Dashboard v1.0.${{ github.run_number }}
+          body: 'Android APK built from GitHub Actions'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

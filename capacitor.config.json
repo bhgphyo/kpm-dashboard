@@ -1,0 +1,20 @@
+{
+  "appId": "com.kpm.dashboard",
+  "appName": "KPM Dashboard",
+  "webDir": "public",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "backgroundColor": "#020617",
+      "androidSplashResourceName": "splash"
+    }
+  },
+  "android": {
+    "buildOptions": {
+      "keystore": "release-keystore.jks"
+    }
+  }
+}
+

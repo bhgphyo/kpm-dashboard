@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyaw Phyo Myint - Universal IT & AI Mastery</title>
+    <!-- Local Libraries for Offline Use -->
+    <script src="js/tailwind.js"></script>
+    <script src="js/chart.js"></script>
+    <!-- Markdown Support via marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="css/fonts.css">
+    <!-- Professional Tech Palette: Deep Space Blue & Vibrant Cyan -->
+    <style>
+        /* Fonts loaded locally from css/fonts.css */
+        
+        /* Carbon Fiber Pattern - CSS Only */
+        .carbon-fiber-bg {
+            background-color: #020617;
+            background-image: 
+                linear-gradient(45deg, #0a0a0a 25%, transparent 25%, transparent 75%, #0a0a0a 75%, #0a0a0a),
+                linear-gradient(45deg, #0a0a0a 25%, transparent 25%, transparent 75%, #0a0a0a 75%, #0a0a0a);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            color: #f1f5f9;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            height: 350px;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: #0ea5e9;
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .brand-cisco { border-top: 4px solid #00bceb; }
+        .brand-microsoft { border-top: 4px solid #f25022; }
+        .brand-google { border-top: 4px solid #4285f4; }
+        .brand-fortinet { border-top: 4px solid #c32026; }
+
+        .gradient-text {
+            background: linear-gradient(to right, #38bdf8, #818cf8, #34d399);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* AI Feature Styles */
+        .ai-glow {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.5);
+        }
+        
+        @keyframes pulse-border {
+            0% { border-color: rgba(56, 189, 248, 0.3); }
+            50% { border-color: rgba(56, 189, 248, 1); }
+            100% { border-color: rgba(56, 189, 248, 0.3); }
+        }
+
+        .ai-active {
+            animation: pulse-border 2s infinite;
+        }
+
+        /* Certificate Slider Styles */
+        .cert-slider {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(56, 189, 248, 0.5) transparent;
+        }
+        
+        .cert-slider::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .cert-slider::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .cert-slider::-webkit-scrollbar-thumb {
+            background-color: rgba(56, 189, 248, 0.5);
+            border-radius: 3px;
+        }
+        
+        .cert-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .cert-card.active {
+            outline: 2px solid #3b82f6;
+            transform: scale(1.02);
+        }
+        
+        .detail-transition {
+            transition: all 0.3s ease;
+        }
+        
+        .badge-pill {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            margin: 0.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .badge-pill:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Loading Spinner Styles */
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-indicator {
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(14, 165, 233, 0.4);
+        }
+
+        /* AI Message Box Markdown Styling */
+        .ai-message {
+            line-height: 1.6;
+            padding: 1rem;
+        }
+
+        .ai-message h1, 
+        .ai-message h2, 
+        .ai-message h3 {
+            font-weight: 700;
+            margin-top: 0.75rem;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+        }
+
+        .ai-message h1 { font-size: 1.25rem; }
+        .ai-message h2 { font-size: 1.1rem; }
+        .ai-message h3 { font-size: 1rem; }
+
+        .ai-message p {
+            margin-bottom: 0.75rem;
+        }
+
+        .ai-message ul,
+        .ai-message ol {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .ai-message li {
+            margin-bottom: 0.25rem;
+        }
+
+        .ai-message strong {
+            color: #38bdf8;
+        }
+
+        .ai-message code {
+            background: rgba(255,255,255,0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.875em;
+            font-family: monospace;
+        }
+
+        .ai-message pre {
+            background: rgba(0,0,0,0.3);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+        }
+
+        .ai-message blockquote {
+            border-left: 3px solid #38bdf8;
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body class="carbon-fiber-bg">
+
+    <!-- Hero Section -->
+    <header class="py-20 px-6 text-center">
+        <div class="mb-4 inline-block px-4 py-1 bg-sky-500/10 border border-sky-500/20 rounded-full text-xs font-bold text-sky-400 tracking-widest uppercase">
+            Cross-Platform Certified Tech Lead
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter text-white">
+            KYAW <span class="gradient-text">PHYO MYINT</span>
+        </h1>
+        <p class="text-xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+            Multi-Vendor Specialist: Expert in Infrastructure Deployment, Cyber Security, Cloud Solutions & Artificial Intelligence.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24 space-y-12">
+
+        <!-- AI Assistant Section (NEW) -->
+        <section class="glass-panel p-8 ai-glow">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-8">
+                <div class="flex-1">
+                    <div class="flex items-center gap-4 mb-2">
+                        <h2 class="text-3xl font-black text-white flex items-center">
+                            <span class="mr-3">✨</span> Gemini AI Career Assistant
+                        </h2>
+                        <!-- Level Badge -->
+                        <div id="level-badge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                            👑 Level 10
+                        </div>
+                    </div>
+                    <p class="text-slate-400 mt-2">အစ်ကို့ရဲ့ Profile ကို အခြေခံပြီး AI နဲ့ အလုပ်အကိုင် အကြံဉာဏ်များ ရယူပါ။</p>
+                    <!-- Level Progress Bar -->
+                    <div class="mt-4 max-w-xs">
+                        <div class="flex justify-between text-xs text-slate-500 mb-1">
+                            <span>Level Progress</span>
+                            <span id="level-progress-text">10/10</span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div id="level-progress-fill" class="h-full bg-amber-500 transition-all duration-500" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ai-status" class="hidden flex items-center space-x-2 text-sky-400 font-bold ml-4">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                    </span>
+                    <span>AI စဉ်းစားနေသည်...</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button onclick="generateCareerAdvice()" class="p-6 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 rounded-2xl transition text-left group">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition">🚀</div>
+                    <h3 class="font-bold text-white uppercase text-sm tracking-widest">✨ Career Roadmap</h3>
+                    <p class="text-xs text-slate-400 mt-2">အသင့်တော်ဆုံး ရာထူးနှင့် လစာနှုန်းထား ခန့်မှန်းချက်များ။</p>
+                </button>
+                <button onclick="generateInterviewPrep()" class="p-6 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 rounded-2xl transition text-left group">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition">🎤</div>
+                    <h3 class="font-bold text-white uppercase text-sm tracking-widest">✨ Interview Prep</h3>
+                    <p class="text-xs text-slate-400 mt-2">နည်းပညာဆိုင်ရာ မေးခွန်းများနှင့် ပြင်ဆင်ရန် အချက်များ။</p>
+                </button>
+                <button onclick="generateSkillAnalysis()" class="p-6 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-2xl transition text-left group">
+                    <div class="text-2xl mb-2 group-hover:scale-110 transition">📈</div>
+                    <h3 class="font-bold text-white uppercase text-sm tracking-widest">✨ Skill Gap Analysis</h3>
+                    <p class="text-xs text-slate-400 mt-2">နောက်ထပ် ဘာတွေထပ်သင်သင့်လဲ? AI အကြံပေးချက်။</p>
+                </button>
+            </div>
+
+            <div id="ai-response-container" class="hidden mt-8 p-6 bg-black/40 border border-white/5 rounded-2xl animate-fade-in">
+                <div id="ai-response-text" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line"></div>
+            </div>
+
+            <!-- AI Chat Box -->
+            <div class="mt-6 p-6 bg-sky-900/20 border border-sky-500/20 rounded-2xl">
+                <h4 class="text-sm font-bold text-sky-400 mb-3 flex items-center">
+                    <span class="mr-2">💬</span> AI နဲ့ စကားပြောရန် Chat Box
+                </h4>
+                <div id="chat-history" class="space-y-3 max-h-64 overflow-y-auto mb-3 px-2">
+                    <div class="text-xs text-slate-500 text-center italic">မေးချင်တာ ရိုက်ထည့်ပါ...</div>
+                </div>
+                <div class="flex gap-2">
+                    <input id="chat-input" type="text" placeholder="မေးချင်တာ ရိုက်ထည့်ပါ..." 
+                        class="flex-1 px-4 py-2 bg-black/40 border border-white/10 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
+                        onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                    <button id="chat-send-btn" onclick="sendChatMessage()" class="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-xl text-sm font-bold transition flex items-center gap-2">
+                        <span id="send-icon">Send</span>
+                        <span id="loading-spinner" class="loading-spinner hidden"></span>
+                    </button>
+                </div>
+                <!-- AI Status Indicator -->
+                <div id="chat-status" class="hidden mt-2 px-3 py-2 loading-indicator rounded-lg text-xs text-sky-400 flex items-center gap-2">
+                    <span class="animate-pulse">✨</span>
+                    <span id="status-text">AI စဉ်းစားနေသည်...</span>
+                </div>
+            </div>
+
+            <!-- Import / Export UI -->
+            <div class="mt-6">
+                <h4 class="text-sm font-bold text-white mb-2">Import / Export Documents</h4>
+                <div class="flex items-center gap-3 flex-wrap">
+                    <input id="file-input" type="file" class="hidden" accept=".pdf,.jpeg,.jpg,.png,.doc,.docx,.txt,.json" multiple />
+                    <button onclick="document.getElementById('file-input').click()" class="px-4 py-2 bg-sky-500/20 text-sky-400 rounded hover:bg-sky-500/30 transition">
+                        📁 Upload Files (PDF, JPEG, PNG, DOC, etc.)
+                    </button>
+                    <button onclick="exportCV()" class="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded hover:bg-emerald-500/30 transition">
+                        📄 Export CV Form
+                    </button>
+                    <button onclick="refreshFiles()" class="px-4 py-2 bg-gray-700/40 text-slate-300 rounded hover:bg-gray-700/60 transition">
+                        🔄 Refresh List
+                    </button>
+                </div>
+                <div id="files-list" class="mt-4 text-xs text-slate-400"></div>
+            </div>
+        </section>
+
+        <!-- Core Mastery Radar -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="glass-panel p-8">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <span class="mr-3">🛡️</span> Strategic Skills Radar
+                </h2>
+                <div class="chart-container">
+                    <canvas id="universalRadar"></canvas>
+                </div>
+            </div>
+
+            <!-- Big Stat Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="glass-panel p-6 flex flex-col justify-center brand-cisco">
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Cisco Academy</p>
+                    <p class="text-4xl font-black mt-2">5 <span class="text-lg text-sky-400">Badges</span></p>
+                    <p class="text-xs text-slate-400 mt-2">Network, Hardware & AI Career Ready</p>
+                </div>
+                <div class="glass-panel p-6 flex flex-col justify-center brand-fortinet">
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Fortinet</p>
+                    <p class="text-4xl font-black mt-2">FCA <span class="text-lg text-red-500">& FCF</span></p>
+                    <p class="text-xs text-slate-400 mt-2">Official Security Associate Certification</p>
+                </div>
+                <div class="glass-panel p-6 flex flex-col justify-center brand-google">
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Google Cloud</p>
+                    <p class="text-4xl font-black mt-2">8 <span class="text-lg text-blue-500">AI Badges</span></p>
+                    <p class="text-xs text-slate-400 mt-2">Generative AI Specialist Track</p>
+                </div>
+                <div class="glass-panel p-6 flex flex-col justify-center brand-microsoft">
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Microsoft</p>
+                    <p class="text-4xl font-black mt-2"><span class="credential-count">29</span> <span class="text-lg text-orange-500">Credentials</span></p>
+                    <p class="text-xs text-slate-400 mt-2">Azure Fundamentals & AI Foundry Expert</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificate Cards with Slider -->
+        <section class="glass-panel p-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <span class="mr-3">🏆</span> Professional Certifications
+            </h2>
+            
+            <!-- Certificate Cards Container -->
+            <div id="cert-cards-container" class="cert-slider flex overflow-x-auto gap-4 pb-4 mb-6">
+                <!-- Cards will be generated by JavaScript -->
+            </div>
+
+            <!-- Dynamic Detail Box -->
+            <div id="cert-detail-box" class="glass-panel p-6 bg-gradient-to-br from-slate-900/50 to-slate-800/50 detail-transition">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- Left: Provider Info -->
+                    <div class="flex-1">
+                        <div id="detail-header" class="flex items-center gap-4 mb-4">
+                            <div id="detail-icon" class="text-4xl">🏆</div>
+                            <div>
+                                <h3 id="detail-title" class="text-xl font-bold text-white">Select a Certificate</h3>
+                                <p id="detail-subtitle" class="text-sm text-slate-400">Click on any certificate card above</p>
+                            </div>
+                        </div>
+                        <p id="detail-description" class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Your certificate details will appear here when you click on a certificate provider card above.
+                        </p>
+                        <div id="detail-skills" class="flex flex-wrap gap-2">
+                            <!-- Skills badges will be injected here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Stats -->
+                    <div class="w-full md:w-48 flex flex-col gap-3">
+                        <div class="p-4 bg-white/5 rounded-xl text-center">
+                            <p id="detail-count" class="text-3xl font-black text-sky-400">0</p>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Credentials</p>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-xl text-center">
+                            <p id="detail-badges" class="text-3xl font-black text-emerald-400">0</p>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Badges Earned</p>
+                        </div>
+                        <button onclick="generateCertAdvice()" class="p-3 bg-sky-500/20 hover:bg-sky-500/30 border border-sky-500/30 rounded-xl text-sm text-sky-400 transition flex items-center justify-center gap-2">
+                            <span>💡</span> Get AI Advice
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specific Brand Focus: CISCO SECTION -->
+        <section class="glass-panel p-8 brand-cisco bg-sky-950/10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-black text-white">Cisco Networking Academy Credentials</h2>
+                    <p class="text-slate-400">Foundational expertise in networking, hardware, and modern technology.</p>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Cisco_logo.svg" class="h-10 mt-4 md:mt-0 opacity-80" alt="Cisco">
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">Networking Basics</h3>
+                    <p class="text-xs text-slate-400 mt-1">Mastered IP addressing, cabling, and home wireless configuration with Packet Tracer.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">Computer Hardware Basics</h3>
+                    <p class="text-xs text-slate-400 mt-1">Fundamentals of PC/Mobile assembly, repair, and advanced troubleshooting.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">Career Preparation Workshop</h3>
+                    <p class="text-xs text-slate-400 mt-1">Verified job-readiness and enrollment in Cisco Talent Bridge Matching Engine.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">AI Fundamentals (IBM)</h3>
+                    <p class="text-xs text-slate-400 mt-1">Deep learning, computer vision, and AI ethics in collaboration with IBM SkillsBuild.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                    <h3 class="font-bold text-sky-400">Introduction to Modern AI</h3>
+                    <p class="text-xs text-slate-400 mt-1">Hands-on practice in prompt engineering and chatbot model mechanics.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/5 flex items-center justify-center italic text-slate-500 text-xs">
+                    Verifiable on credly.com/users/kyawphyomyint
+                </div>
+            </div>
+        </section>
+
+        <!-- Combined Impact: Experience & Assets -->
+        <section class="glass-panel p-8">
+            <h2 class="text-2xl font-bold mb-8">Professional Operational Scale</h2>
+            <div class="chart-container">
+                <canvas id="universalImpactBar"></canvas>
+            </div>
+        </section>
+
+        <!-- Counsellor's Final Roadmap -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="md:col-span-2 glass-panel p-8 flex flex-col justify-center">
+                <h2 class="text-3xl font-black mb-4">The Universal IT Leader Verdict</h2>
+                <p class="text-slate-300 leading-relaxed mb-6">
+                    အစ်ကို့ရဲ့ Profile ဟာ **Cisco** ရဲ့ Networking/Hardware အခြေခံကောင်းမှု၊ **Fortinet** ရဲ့ Security ကျွမ်းကျင်မှု၊ **Google/Microsoft** တို့ရဲ့ Cloud AI နည်းပညာတွေ စုစည်းနေတဲ့အတွက် အနာဂတ် IT လောကမှာ အစားထိုးလို့မရတဲ့ **"Architect Level"** တစ်ယောက် ဖြစ်နေပါပြီ။ 
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <div class="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-sm font-bold border border-emerald-500/20">READY FOR SENIOR ROLE</div>
+                    <div class="px-4 py-2 bg-sky-500/20 text-sky-400 rounded-lg text-sm font-bold border border-sky-500/20">MULTI-VENDOR CERTIFIED</div>
+                </div>
+            </div>
+            <div class="glass-panel p-8 text-center flex flex-col items-center justify-center bg-gradient-to-br from-sky-900/40 to-transparent">
+                <div class="text-5xl mb-4">🏆</div>
+                <h3 class="text-xl font-bold">Lvl 10 Profile</h3>
+                <p class="text-xs text-slate-500 mt-2 uppercase tracking-widest">Career Readiness Score</p>
+                <div class="mt-6 w-full h-3 bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-sky-500" style="width: 100%"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // ============================================================
+        // 🎯 CONFIGURATION - SET YOUR BACKEND URL HERE
+        // ============================================================
+        
+        // For LOCAL development: Keep as null or empty string
+        // For PRODUCTION: Replace with your Render backend URL (e.g., 'https://kpm-dashboard.onrender.com')
+        // The app will automatically detect if it's running in Capacitor and use this URL
+        const BACKEND_URL = ''; // CHANGE THIS after deploying to Render!
+        
+        // Auto-detect if running in Capacitor/WebView
+        const isCapacitor = window.Capacitor !== undefined;
+        const API_BASE_URL = BACKEND_URL || (isCapacitor ? '' : '');
+        
+        // Helper function to get API URL
+        function getApiUrl(endpoint) {
+            if (BACKEND_URL) {
+                // Production: Use deployed backend URL
+                return `${BACKEND_URL}${endpoint}`;
+            } else if (isCapacitor) {
+                // Capacitor app: You must set BACKEND_URL above!
+                console.warn('⚠️ BACKEND_URL not configured for Capacitor app!');
+                return endpoint;
+            } else {
+                // Local development: Use relative URL
+                return endpoint;
+            }
+        }
+
+        // ============================================================
+        // 🎯 LEVEL-BASED ADAPTIVE AI ASSISTANT SYSTEM
+        // ============================================================
+
+        // Configure marked.js for Markdown rendering
+        marked.setOptions({
+            breaks: true,        // Convert \n to <br>
+            gfm: true,           // GitHub Flavored Markdown
+            headerIds: true,     // Add IDs to headers
+            mangle: false        // Don't mangle links
+        });
+
+        // Level Configuration
+        const LEVEL_CONFIG = {
+            1: {
+                name: "Foundation",
+                title: "🌱 Foundation Level",
+                description: "အခြေခံများ တည်ဆောက်နေပါသည်",
+                tone: "encouraging",
+                complexity: "basic",
+                color: "text-emerald-400",
+                bgColor: "bg-emerald-500/20",
+                borderColor: "border-emerald-500/30"
+            },
+            2: {
+                name: "Developing",
+                title: "🌿 Developing Level",
+                description: "အခြေခံကျွမ်းဝင်လာပါပြီ",
+                tone: "supportive",
+                complexity: "basic",
+                color: "text-teal-400",
+                bgColor: "bg-teal-500/20",
+                borderColor: "border-teal-500/30"
+            },
+            3: {
+                name: "Growing",
+                title: "🌳 Growing Level",
+                description: "အသိပညာများ တိုးတက်လျက်",
+                tone: "supportive",
+                complexity: "intermediate",
+                color: "text-cyan-400",
+                bgColor: "bg-cyan-500/20",
+                borderColor: "border-cyan-500/30"
+            },
+            4: {
+                name: "Proficient",
+                title: "🌴 Proficient Level",
+                description: "ကျွမ်းဝင်မှု တိုးတက်လျက်",
+                tone: "professional",
+                complexity: "intermediate",
+                color: "text-sky-400",
+                bgColor: "bg-sky-500/20",
+                borderColor: "border-sky-500/30"
+            },
+            5: {
+                name: "Advanced",
+                title: "🚀 Advanced Level",
+                description: "အဆင့်မြင့် နည်းပညာများ လေ့လာနေ",
+                tone: "professional",
+                complexity: "advanced",
+                color: "text-blue-400",
+                bgColor: "bg-blue-500/20",
+                borderColor: "border-blue-500/30"
+            },
+            6: {
+                name: "Expert",
+                title: "💎 Expert Level",
+                description: "ကျွမ်းကျင်သူ ဖြစ်လာပါပြီ",
+                tone: "challenging",
+                complexity: "advanced",
+                color: "text-indigo-400",
+                bgColor: "bg-indigo-500/20",
+                borderColor: "border-indigo-500/30"
+            },
+            7: {
+                name: "Master",
+                title: "🎯 Master Level",
+                description: "နည်းပညာ မြောက်ဉာဏ်ကောင်း",
+                tone: "challenging",
+                complexity: "expert",
+                color: "text-violet-400",
+                bgColor: "bg-violet-500/20",
+                borderColor: "border-violet-500/30"
+            },
+            8: {
+                name: "Specialist",
+                title: "⭐ Specialist Level",
+                description: "အထူးပြု ကျွမ်းကျင်မှု",
+                tone: "strategic",
+                complexity: "expert",
+                color: "text-purple-400",
+                bgColor: "bg-purple-500/20",
+                borderColor: "border-purple-500/30"
+            },
+            9: {
+                name: "Architect",
+                title: "🏛️ Architect Level",
+                description: "စနစ်ဒီဇိုင်း ရေးဆွဲနေ",
+                tone: "strategic",
+                complexity: "architect",
+                color: "text-fuchsia-400",
+                bgColor: "bg-fuchsia-500/20",
+                borderColor: "border-fuchsia-500/30"
+            },
+            10: {
+                name: "Universal Master",
+                title: "👑 Universal Master Level",
+                description: "အစဉ်သာရဖြစ်ပြီ",
+                tone: "leadership",
+                complexity: "visionary",
+                color: "text-amber-400",
+                bgColor: "bg-amber-500/20",
+                borderColor: "border-amber-500/30"
+            }
+        };
+
+        // ============================================================
+        // Profile Data - Moved to top for dependency order
+        // ============================================================
+        const profileData = {
+            name: "Kyaw Phyo Myint",
+            experience: "10+ years",
+            totalCredentials: 40,
+            certs: [
+                "Cisco Networking Basics", "Cisco Hardware Basics", "Fortinet FCA/FCF", 
+                "Azure Fundamentals AZ-900", "Azure Data Fundamentals DP-900", 
+                "14 Microsoft Foundry AI Badges (Vision, Speech, NLP)",
+                "8 Google Cloud Gen AI Badges"
+            ],
+            experienceList: [
+                { role: "IT Leader", company: "29 Jewellery", devices: 500, cameras: 380 },
+                { role: "IT Technician", company: "MIS", users: 200 }
+            ],
+            skills: {
+                network: 95,
+                security: 90,
+                azure: 85,
+                googleAI: 92,
+                hardware: 98,
+                leadership: 90
+            }
+        };
+
+        // Calculate Level based on credentials and skills
+        function calculateLevel(credentials, skills) {
+            // Base level from credentials (40 credentials = Level 10)
+            let level = Math.min(10, Math.floor(credentials / 4) + 1);
+            
+            // Boost level based on skill scores
+            const avgSkill = (skills.network + skills.security + skills.azure + 
+                             skills.googleAI + skills.hardware + skills.leadership) / 6;
+            
+            if (avgSkill >= 95) level = Math.max(level, 10);
+            else if (avgSkill >= 90) level = Math.max(level, 8);
+            else if (avgSkill >= 85) level = Math.max(level, 6);
+            
+            return Math.min(10, level);
+        }
+
+        // ============================================================
+        // currentLevel - Moved to top and initialized immediately
+        // ============================================================
+        // Initialize currentLevel with localStorage persistence
+        // This must be defined BEFORE any functions that use it
+        let currentLevel = (() => {
+            const stored = localStorage.getItem('kpm_currentLevel');
+            if (stored) {
+                console.log('📂 [Level] Loaded from localStorage:', parseInt(stored, 10));
+                return parseInt(stored, 10);
+            }
+            // Calculate from profile data
+            const calculated = calculateLevel(profileData.totalCredentials, profileData.skills);
+            localStorage.setItem('kpm_currentLevel', calculated);
+            console.log('🆕 [Level] Calculated new level:', calculated);
+            return calculated;
+        })();
+
+        // ============================================================
+        // Global Functions - All use currentLevel which is now initialized
+        // ============================================================
+
+        // Get current level config
+        function getLevelConfig() {
+            return LEVEL_CONFIG[currentLevel] || LEVEL_CONFIG[1];
+        }
+
+        // Update level display in UI
+        function updateLevelDisplay() {
+            const config = getLevelConfig();
+            const levelBadge = document.getElementById('level-badge');
+            const levelProgressFill = document.getElementById('level-progress-fill');
+            const levelProgressText = document.getElementById('level-progress-text');
+            
+            if (levelBadge) {
+                levelBadge.className = `inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${config.bgColor} ${config.color} ${config.borderColor} border`;
+                levelBadge.innerHTML = `${config.title}`;
+            }
+            
+            if (levelProgressFill) {
+                levelProgressFill.style.width = `${currentLevel * 10}%`;
+                levelProgressFill.className = `h-full transition-all duration-500 ${config.color.replace('text-', 'bg-')}`;
+            }
+            
+            if (levelProgressText) {
+                levelProgressText.innerText = `${currentLevel}/10`;
+            }
+        }
+
+        // Generate system prompt based on level
+        function getLevelSystemPrompt() {
+            const config = getLevelConfig();
+            const prompts = {
+                encouraging: `မင်းက level အလိုက် သင်ကြားပေးရမယ့် ဆရာဖြစ်တယ်။ 
+You are an encouraging AI assistant. Provide supportive, detailed explanations with simple examples. Always motivate the user and celebrate small wins. Use friendly, warm language.`,
+                supportive: `မင်းက level အလိုက် သင်ကြားပေးရမယ့် ဆရာဖြစ်တယ်။ 
+You are a helpful AI assistant. Provide clear explanations with practical examples. Balance encouragement with educational depth. Use professional but approachable language.`,
+                professional: `မင်းက level အလိုက် သင်ကြားပေးရမယ့် ဆရာဖြစ်တယ်။ 
+You are a professional AI assistant. Provide concise, actionable advice. Focus on practical applications and real-world scenarios. Use professional terminology appropriately.`,
+                challenging: `မင်းက level အလိုက် သင်ကြားပေးရမယ့် ဆရာဖြစ်တယ်။ 
+You are a challenging AI mentor. Push the user with thought-provoking questions. Discuss advanced concepts and edge cases. Expect high-level understanding.`,
+                strategic: `မင်းက level အလိုက် သင်ကြားပေးရမယ့် ဆရာဖြစ်တယ်။ 
+You are a strategic AI advisor. Focus on big-picture thinking, architecture decisions, and industry trends. Provide insights on leadership and innovation.`,
+                leadership: `မင်းက level အလိုက် သင်ကြားပေးရမယ့် ဆရာဖြစ်တယ်။ 
+You are an AI leadership coach. Discuss strategic vision, team building, industry influence, and thought leadership. Act as a peer mentor at the highest level.`
+            };
+
+            return prompts[config.tone] || prompts.encouraging;
+        }
+
+        // ============================================================
+        // Gemini API Configuration
+        // ============================================================
+        // Using server-side key from `.env` via the /api/gemini proxy.
+        const MODEL_NAME = "gemini-2.5-flash-preview-09-2025";
+        
+        // Note: profileData is now defined at the top of the script for proper initialization order
+
+        async function callGemini(prompt, includeLevelContext = true) {
+            const statusEl = document.getElementById('ai-status');
+            const responseEl = document.getElementById('ai-response-container');
+            const textEl = document.getElementById('ai-response-text');
+
+            statusEl.classList.remove('hidden');
+            responseEl.classList.remove('hidden');
+            textEl.innerHTML = '<div class="flex items-center gap-2"><span class="animate-pulse">✨</span><span>AI စဉ်းစားနေသည်...</span></div>';
+
+            try {
+                // Build enhanced prompt with level context
+                let enhancedPrompt = prompt;
+                if (includeLevelContext) {
+                    const levelConfig = getLevelConfig();
+                    const systemPrompt = getLevelSystemPrompt();
+                    enhancedPrompt = `${systemPrompt}
+
+CURRENT USER LEVEL: ${currentLevel}/10 (${levelConfig.name})
+Complexity Setting: ${levelConfig.complexity}
+Tone: ${levelConfig.tone}
+
+User Profile:
+- Name: ${profileData.name}
+- Experience: ${profileData.experience}
+- Credentials: ${profileData.totalCredentials}+ certifications
+- Key Skills: ${Object.entries(profileData.skills).map(([k, v]) => `${k}: ${v}`).join(', ')}
+
+${prompt}
+
+IMPORTANT: Adjust your response complexity and depth based on the user's level (${currentLevel}/10). 
+- For levels 1-3: Use simple language, encourage, focus on fundamentals
+- For levels 4-6: Use moderate complexity, practical scenarios
+- For levels 7-9: Use advanced concepts, strategic thinking
+- For level 10: Use visionary perspective, industry leadership topics
+
+When providing your response, use Markdown formatting:
+- Use **bold** for emphasis on key points
+- Use headings (## Heading) for major sections
+- Use bullet points (*) or numbered lists (1.) for key information
+- Break long paragraphs into shorter, digestible sections
+
+Respond in Burmese (Myanmar) language with appropriate depth for this level.`;
+                }
+
+                const r = await fetch(getApiUrl('/api/gemini'), {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: enhancedPrompt })
+                });
+                const json = await r.json();
+                const text = json.result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (text) {
+                    textEl.innerHTML = marked.parse(text);
+                } else {
+                    textEl.innerHTML = marked.parse(JSON.stringify(json.result || json, null, 2));
+                }
+            } catch (err) {
+                textEl.innerHTML = marked.parse('တောင်းပန်ပါတယ်၊ AI ချိတ်ဆက်ရာတွင် အမှားတက်နေပါသည်။');
+            } finally {
+                statusEl.classList.add('hidden');
+            }
+        }
+
+        function generateCareerAdvice() {
+            // Level-adaptive career advice
+            const levelPrompts = {
+                1: `🎯 LEVEL ${currentLevel}: Foundation Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- အခြေခံ Junior ရာထူး ၃ ခု အကြံပေးပါ
+- လမ်းကြောင်းစစ်ပြီး နောက်ဆုံးအဆင့်တွေ ဘယ်လိုတက်မလဲ အကြံပေးပါ
+- လစာချက်တွေ အခြေခံအနေနဲ့ မျှော်မှန်းနိုင်တဲ့ ပမာဏ (MMK နဲ့ USD) ကို အကြံပေးပါ
+- အားပေးတဲ့ စကားလေးတွေ ထည့်ပါ`,
+
+                2: `🎯 LEVEL ${currentLevel}: Developing Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- Junior to Mid-level ရာထူး ၃ ခု အကြံပေးပါ
+- လက်တွေ့ အခွင့်အလမ်းတွေ ညွှန်းပါ
+- လစာချက်တွေ ပုံမှန်ဈေးနှုန်း (MMK နဲ့ USD) ကို အကြံပေးပါ
+- တိုးတက်မှု အဆင့်ဆင့် လမ်းကြောင်း ပြပါ`,
+
+                3: `🎯 LEVEL ${currentLevel}: Growing Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- Mid-level ရာထူး ၃ ခု အကြံပေးပါ
+- နည်းပညာအပြည့်အဝ သုံးလို့ရမယ့် အခွင့်အလမ်းတွေ
+- လစာချက် ဈေးနှုန်း (MMK နဲ့ USD) ကို အသေးစိတ်
+- အနာဂတ် ရာထူးတက်လမ်းကြောင်း ပြပါ`,
+
+                4: `🎯 LEVEL ${currentLevel}: Proficient Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- Senior-level ရာထူး ၃ ခု အကြံပေးပါ
+- Leadership ပါဝင်လာမယ့် အခွင့်အလမ်းတွေ
+- လစာချက် Market Rate (MMK နဲ့ USD) အပြည့်အစုံ
+- နည်းပညာ ဒါရိုက်တာ ဖြစ်ဖို့ လမ်းညွှန်ချက်များ`,
+
+                5: `🎯 LEVEL ${currentLevel}: Advanced Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- Advanced/Senior ရာထူး ၃ ခု အကြံပေးပါ
+- Regional သို့မဟုတ် Global opportunities
+- လစာချက် Competitive Rate (MMK နဲ့ USD)
+- နည်းပညာ ခေါင်းလောင်းလုပ်ဖို့ Strategic Plan`,
+
+                6: `🎯 LEVEL ${currentLevel}: Expert Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- Expert/Lead ရာထူး ၃ ခု အကြံပေးပါ
+- C-level နဲ့ အနီးကပ် အခွင့်အလမ်းတွေ
+- လစာချက် Executive Level (MMK နဲ့ USD)
+- ကိုယ်တိုင် တည်ထောင်သူ ဖြစ်ဖို့ အချက်များ`,
+
+                7: `🎯 LEVEL ${currentLevel}: Master Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- Master-level/Principal ရာထူး ၃ ခု
+- Industry thought leadership အခွင့်အလမ်းများ
+- လစာချက် Top-tier (MMK နဲ့ USD)
+- နည်းပညာ industry ကို ဦးဆောင်ဖို့ Strategy`,
+
+                8: `🎯 LEVEL ${currentLevel}: Specialist Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- Specialist/Director-level ရာထူး ၃ ခု
+- Regional/International leadership roles
+- လစာချက် Executive Compensation (MMK နဲ့ USD)
+- ကိုယ်တိုင် စီးပွားရေး သို့မဟုတ် Consulting`,
+
+                9: `🎯 LEVEL ${currentLevel}: Architect Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} အတွက်:
+- Enterprise Architect / CTO potential
+- နည်းပညာ Strategic Vision နဲ့ Board-level roles
+- လစာချက် C-Suite Compensation (MMK နဲ့ USD)
+- နည်းပညာ စီမံကိန်း ဦးဆောင်သူအဖြစ် လမ်းညွှန်ချက်များ`,
+
+                10: `🎯 LEVEL ${currentLevel}: Universal Master Career Guidance
+Kyaw Phyo Myint ရဲ့ Skills တွေက: ${profileData.certs.join(", ")}။ အတွေ့အကြုံက ${profileData.experience}။ 
+
+Level ${currentLevel} UNIVERSAL MASTER အတွက်:
+- သူဌေး/CEO/CTO အဆင့် ရာထူး ၃ ခု အကြံပေးပါ
+- International Board positions
+- လစာချက် Top 1% Executive (MMK နဲ့ USD)
+- Industry leadership, Keynote speaking, Advisory board အခွင့်အလမ်းများ
+- နည်းပညာ ecosystem ကို ဦးဆောင်ဖို့ Vision`
+            };
+
+            const prompt = levelPrompts[currentLevel] || levelPrompts[5];
+            callGemini(prompt);
+        }
+
+        function generateInterviewPrep() {
+            // Level-adaptive interview preparation
+            const questionCount = Math.min(10, Math.max(3, currentLevel + 2));
+            const difficultyDesc = {
+                1: "အခြေခံ basic concepts လေးတွေနဲ့ scenario လေးတွေ",
+                2: "အခြေခံကနေ intermediate ကို ချိတ်ဆက်ပေးတဲ့ မေးခွန်းတွေ",
+                3: "intermediate level scenario-based မေးခွန်းတွေ",
+                4: "practical troubleshooting နဲ့ real-world situation မေးခွန်းတွေ",
+                5: "advanced technical နဲ့ architecture design မေးခွန်းတွေ",
+                6: "expert-level system design နဲ့ strategic planning မေးခွန်းတွေ",
+                7: "master-level leadership နဲ့ innovation မေးခွန်းတွေ",
+                8: "specialist-level industry trends နဲ့ business acumen မေးခွန်းတွေ",
+                9: "architect-level enterprise strategy နဲ့ digital transformation မေးခွန်းတွေ",
+                10: "visionary leadership, board presentation နဲ့ industry disruption strategy"
+            };
+
+            const prompt = `🎯 LEVEL ${currentLevel}: Interview Preparation
+
+Kyaw Phyo Myint က '${currentLevel >= 8 ? "CTO/VP Engineering" : currentLevel >= 6 ? "Senior Cloud & Security Manager" : currentLevel >= 4 ? "IT Manager" : "IT Specialist"}' ရာထူးလျှောက်ရင် မေးနိုင်တဲ့ မေးခွန်း ${questionCount} ခုကို ${difficultyDesc[currentLevel]} ပါဝင်ပြီး:
+
+1. Technical Questions (${Math.ceil(questionCount/2)} ခု)
+2. Scenario-based Questions (${Math.ceil(questionCount/3)} ခု)  
+3. Behavioral/Leadership Questions (${Math.floor(questionCount/3)} ခု)
+
+မေးခွန်းတစ်ခုချင်းစီအတွက်:
+- မေးခွန်း
+- လိုအပ်တဲ့ အဖြေအဓိပ္ပာယ်ဖွင့်ဆိုချက်
+- သင့်တဲ့ အဖြေ sample အနေနဲ့
+
+အားလုံးကို မြန်မာလို အသေးစိတ် ရှင်းပြပါ။`;
+            callGemini(prompt);
+        }
+
+        function generateSkillAnalysis() {
+            // Level-adaptive skill gap analysis
+            const focusAreas = {
+                1: "basic certifications (CCNA, CompTIA A+) နဲ့ hands-on skills",
+                2: "intermediate certifications (AWS CCP, Azure Fundamentals)",
+                3: "specialized certifications (CCNP, AWS Solutions Architect)",
+                4: "advanced certifications (CISSP, AWS Professional)",
+                5: "expert certifications (CCIE, AWS Advanced Networking)",
+                6: "architecture certifications (AWS Solutions Architect Professional, Azure Solutions Architect Expert)",
+                7: "leadership certifications (AWS Security Specialty, TOGAF)",
+                8: "strategic certifications (CISSP-ISSMP, Google Cloud Architecture)",
+                9: "enterprise certifications (CCSP, Google Cloud Security)",
+                10: "board-level credentials (Executive MBA, Industry Advisory Roles)"
+            };
+
+            const prompt = `🎯 LEVEL ${currentLevel}: Strategic Skill Gap Analysis
+
+Kyaw Phyo Myint ရဲ့ အခု Skills တွေ:
+- Network: ${profileData.skills.network}%
+- Security: ${profileData.skills.security}%
+- Azure Cloud: ${profileData.skills.azure}%
+- Google AI: ${profileData.skills.googleAI}%
+- Hardware: ${profileData.skills.hardware}%
+- Leadership: ${profileData.skills.leadership}%
+- Credentials: ${profileData.totalCredentials}+ certifications
+
+Level ${currentLevel} အတွက် ${focusAreas[currentLevel]} ကို focus လုပ်ပါ:
+
+1. 📊 Current Strengths - ဘာတွေ ကောင်းပြီးပြီ။
+2. 🎯 Priority Focus Areas - အရင်လုပ်သင့်တဲ့ skills
+3. 📈 Next Level Skills - Level ${Math.min(10, currentLevel + 1)} အတွက် လိုအပ်တဲ့ certifications တွေ
+4. 🎓 Recommended Learning Path - 3-6-12 month plan
+5. 🏆 Target Certifications - လိုအပ်တဲ့ specific certifications တွေ
+
+အကြောင်းပြချက်နဲ့ မြန်မာလို အသေးစိတ် အကြံပေးပါ။`;
+            callGemini(prompt);
+        }
+
+        // ============================================================
+        // 🎯 AI CHAT BOX WITH LOADING INDICATOR & ERROR HANDLING
+        // ============================================================
+
+        // Show loading state in chat UI
+        function showChatLoading(isLoading) {
+            const sendBtn = document.getElementById('chat-send-btn');
+            const sendIcon = document.getElementById('send-icon');
+            const spinner = document.getElementById('loading-spinner');
+            const chatStatus = document.getElementById('chat-status');
+            const statusText = document.getElementById('status-text');
+            const chatInput = document.getElementById('chat-input');
+
+            if (isLoading) {
+                // Show loading state
+                sendBtn.disabled = true;
+                sendBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                sendIcon.classList.add('hidden');
+                spinner.classList.remove('hidden');
+                chatStatus.classList.remove('hidden');
+                statusText.innerText = 'AI စဉ်းစားနေသည်...';
+                chatInput.disabled = true;
+                console.log('🔄 [Chat] Loading started - sending message to AI...');
+            } else {
+                // Hide loading state
+                sendBtn.disabled = false;
+                sendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                sendIcon.classList.remove('hidden');
+                spinner.classList.add('hidden');
+                chatStatus.classList.add('hidden');
+                chatInput.disabled = false;
+                console.log('✅ [Chat] Loading completed');
+            }
+        }
+
+        // Update status message
+        function updateChatStatus(message, isError = false) {
+            const chatStatus = document.getElementById('chat-status');
+            const statusText = document.getElementById('status-text');
+
+            if (isError) {
+                chatStatus.className = 'mt-2 px-3 py-2 rounded-lg text-xs flex items-center gap-2 bg-red-500/20 border border-red-500/40 text-red-400';
+            } else {
+                chatStatus.className = 'mt-2 px-3 py-2 rounded-lg text-xs flex items-center gap-2 loading-indicator';
+            }
+            statusText.innerText = message;
+        }
+
+        // Enhanced sendChatMessage with loading indicator and error handling
+        async function sendChatMessage() {
+            const inputEl = document.getElementById('chat-input');
+            const chatHistoryEl = document.getElementById('chat-history');
+            const message = inputEl.value.trim();
+
+            if (!message) {
+                console.log('⚠️ [Chat] Empty message, ignoring');
+                return;
+            }
+
+            // Remove initial placeholder if exists
+            if (chatHistoryEl.querySelector('.italic')) {
+                chatHistoryEl.innerHTML = '';
+            }
+
+            // Add user message with level indicator
+            const levelConfig = getLevelConfig();
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex justify-end items-start gap-2';
+            userMsg.innerHTML = `
+                <div class="px-4 py-2 bg-sky-500/30 text-sky-100 rounded-2xl rounded-tr-sm text-sm max-w-[80%]">${message}</div>
+                <div class="text-xs ${levelConfig.color} bg-white/5 px-2 py-1 rounded mt-1">Lvl ${currentLevel}</div>
+            `;
+            chatHistoryEl.appendChild(userMsg);
+
+            // Add loading indicator with level context
+            const loadingEl = document.createElement('div');
+            loadingEl.className = 'flex justify-start';
+            loadingEl.innerHTML = `
+                <div class="px-4 py-2 bg-white/10 text-slate-400 rounded-2xl rounded-tl-sm text-sm flex items-center gap-2">
+                    <span class="animate-pulse">✨</span>
+                    <span>Level ${currentLevel} AI စဉ်းစားနေသည်...</span>
+                </div>
+            `;
+            chatHistoryEl.appendChild(loadingEl);
+
+            // Scroll to bottom
+            chatHistoryEl.scrollTop = chatHistoryEl.scrollHeight;
+            inputEl.value = '';
+
+            // Show loading indicator in UI
+            showChatLoading(true);
+
+            try {
+                const systemPrompt = getLevelSystemPrompt();
+
+                const enhancedPrompt = `${systemPrompt}
+
+CURRENT USER LEVEL: ${currentLevel}/10 (${levelConfig.name})
+Complexity Setting: ${levelConfig.complexity}
+Tone: ${levelConfig.tone}
+
+User says: ${message}
+
+IMPORTANT: Respond in Burmese (Myanmar) language appropriate for level ${currentLevel}.
+- Keep responses concise and helpful
+- Adjust technical depth based on level
+- Provide practical, actionable advice`;
+
+                console.log('📤 [Chat] Sending request to', getApiUrl('/api/gemini'), '...');
+                console.log('📝 [Chat] Message length:', message.length, 'characters');
+
+                // Set up timeout for fetch request (30 seconds)
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+                const r = await fetch(getApiUrl('/api/gemini'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: enhancedPrompt }),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+                console.log('📥 [Chat] Response received, status:', r.status);
+
+                if (!r.ok) {
+                    const errorText = await r.text();
+                    console.error('❌ [Chat] API Error:', r.status, errorText);
+
+                    // Handle specific error cases
+                    if (r.status === 500) {
+                        // Check if it's an API key error
+                        if (errorText.includes('API key') || errorText.includes('GEMINI_API_KEY')) {
+                            updateChatStatus('❌ Server Error: Gemini API Key မတပ်ထားပါ။ Server console ကို စစ်ပါ။', true);
+                        } else {
+                            updateChatStatus('❌ Server Error: Server မှာ ပြဿနာရှိနေပါသည်။ နောက်မှ ထပ်ကြိုးစားပါ။', true);
+                        }
+                    } else if (r.status === 400) {
+                        updateChatStatus('❌ Request Error: တောင်းဆိုမှု မှားယွင်းနေပါသည်။', true);
+                    } else if (r.status === 404) {
+                        updateChatStatus('❌ Endpoint Error: /api/gemini မရှိပါ။ Server ကို restart လုပ်ပါ။', true);
+                    } else {
+                        updateChatStatus(`❌ Error ${r.status}: ချိတ်ဆက်မှု မအောင်မြင်ပါ။`, true);
+                    }
+
+                    loadingEl.remove();
+                    showChatLoading(false);
+                    return;
+                }
+
+                const json = await r.json();
+                console.log('✅ [Chat] Parsed response successfully');
+
+                // Check if response has valid AI content
+                if (json.error) {
+                    console.error('❌ [Chat] API returned error:', json.error);
+                    updateChatStatus(`❌ AI Error: ${json.error}`, true);
+                    loadingEl.remove();
+                    showChatLoading(false);
+                    return;
+                }
+
+                if (!json.result?.candidates?.[0]?.content?.parts?.[0]?.text) {
+                    console.warn('⚠️ [Chat] Unexpected response structure:', JSON.stringify(json).substring(0, 200));
+                    updateChatStatus('⚠️ AI Response ပုံစံ မမှန်ပါ။ Console ကို စစ်ပါ။', true);
+                    loadingEl.remove();
+                    showChatLoading(false);
+                    return;
+                }
+
+                const aiText = json.result.candidates[0].content.parts[0].text;
+                console.log('📝 [Chat] AI response length:', aiText.length, 'characters');
+
+                // Remove loading and add AI response with level badge (using marked.parse for Markdown)
+                loadingEl.remove();
+                updateChatStatus('✅ AI ဖြေကြားပြီးပါပြီ!', false);
+
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'flex justify-start items-start gap-2';
+                aiMsg.innerHTML = `
+                    <div class="text-xs ${levelConfig.color} bg-white/5 px-2 py-1 rounded mt-1">Lvl ${currentLevel}</div>
+                    <div class="px-4 py-2 bg-white/10 text-slate-200 rounded-2xl rounded-tl-sm text-sm max-w-[80%] ai-message">${marked.parse(aiText)}</div>
+                `;
+                chatHistoryEl.appendChild(aiMsg);
+
+                // Scroll to bottom
+                chatHistoryEl.scrollTop = chatHistoryEl.scrollHeight;
+
+                showChatLoading(false);
+
+            } catch (err) {
+                console.error('❌ [Chat] Exception caught:', err.name, err.message);
+                console.error('📍 [Chat] Stack:', err.stack);
+
+                // Handle specific error types
+                if (err.name === 'AbortError') {
+                    console.warn('⏱️ [Chat] Request timed out after 30 seconds');
+                    updateChatStatus('⏱️ Timeout: AI အချိန်ကြာနေပါသည်။ နောက်မှ ထပ်ကြိုးစားပါ။', true);
+                } else if (err.name === 'TypeError' && err.message.includes('fetch')) {
+                    console.error('🌐 [Chat] Network error - server might not be running');
+                    updateChatStatus('🌐 Network Error: Server မလည်ပတ်နိုင်ပါ။ Server ကို http://localhost:3000 တွင် စတင်ပါ။', true);
+                } else {
+                    updateChatStatus(`❌ Error: ${err.message}`, true);
+                }
+
+                loadingEl.remove();
+                showChatLoading(false);
+            }
+        }
+
+        // --- File upload handling ---
+        document.getElementById('file-input').addEventListener('change', async (e) => {
+            const files = e.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const form = new FormData();
+                form.append('file', files[i]);
+                await fetch(getApiUrl('/api/upload'), { method: 'POST', body: form });
+            }
+            refreshFiles();
+        });
+
+        // --- Export CV Form Function ---
+        async function exportCV() {
+            const cvData = {
+                name: "Kyaw Phyo Myint",
+                title: "Universal IT & AI Mastery",
+                contact: {
+                    email: "kyawphyomyint@example.com",
+                    phone: "+95 9 XXX XXX XXX",
+                    location: "Myanmar"
+                },
+                summary: "Multi-Vendor Certified IT Leader with expertise in Infrastructure Deployment, Cyber Security, Cloud Solutions & Artificial Intelligence.",
+                experience: [
+                    {
+                        role: "IT Leader",
+                        company: "29 Jewellery",
+                        period: "Present",
+                        achievements: ["Managed 380+ cameras", "Overseeing 500+ devices", "Infrastructure deployment"]
+                    },
+                    {
+                        role: "IT Technician", 
+                        company: "MIS",
+                        period: "Past",
+                        achievements: ["Supported 200+ users", "Hardware maintenance", "Network administration"]
+                    }
+                ],
+                certifications: [
+                    { name: "Cisco Networking Basics", issuer: "Cisco", badges: 5 },
+                    { name: "Fortinet FCA & FCF", issuer: "Fortinet" },
+                    { name: "Azure Fundamentals AZ-900", issuer: "Microsoft" },
+                    { name: "Azure Data Fundamentals DP-900", issuer: "Microsoft" },
+                    { name: "Google Cloud Gen AI Badges", issuer: "Google", count: 8 },
+                    { name: "Microsoft Foundry AI Badges", issuer: "Microsoft", count: 14 }
+                ],
+                skills: ["Network Security", "Cloud Infrastructure", "AI/ML", "Hardware Support", "Team Leadership"],
+                credentials: 40
+            };
+
+            // Create formatted CV content
+            const cvContent = `
+═══════════════════════════════════════════════════════════════
+                    CURRICULUM VITAE
+═══════════════════════════════════════════════════════════════
+
+👤 PERSONAL INFORMATION
+───────────────────────────────────────────────────────────────
+Name:          ${cvData.name}
+Title:         ${cvData.title}
+Email:         ${cvData.contact.email}
+Phone:         ${cvData.contact.phone}
+Location:      ${cvData.contact.location}
+
+📋 PROFESSIONAL SUMMARY
+───────────────────────────────────────────────────────────────
+${cvData.summary}
+
+💼 WORK EXPERIENCE
+───────────────────────────────────────────────────────────────
+${cvData.experience.map(exp => `
+${exp.role} | ${exp.company}
+${exp.achievements.map(a => `  • ${a}`).join('\n')}
+`).join('\n')}
+
+🏆 CERTIFICATIONS
+───────────────────────────────────────────────────────────────
+${cvData.certifications.map(cert => `• ${cert.name} (${cert.issuer})`).join('\n')}
+
+🛠️ KEY SKILLS
+───────────────────────────────────────────────────────────────
+${cvData.skills.join(' • ')}
+
+📊 CREDENTIALS
+───────────────────────────────────────────────────────────────
+Total Credentials Earned: ${cvData.credentials}+
+
+═══════════════════════════════════════════════════════════════
+         Generated by KPM AI Career Assistant
+═══════════════════════════════════════════════════════════════
+`;
+
+            // Create downloadable file
+            const blob = new Blob([cvContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `CV_${cvData.name.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Show success message
+            const filesList = document.getElementById('files-list');
+            filesList.innerHTML = `<div class="text-emerald-400 mt-2">✅ CV Form ကို download လုပ်ပြီးပါပြီ!</div>`;
+        }
+
+        async function refreshFiles() {
+            const r = await fetch(getApiUrl('/api/files'));
+            const json = await r.json();
+            const el = document.getElementById('files-list');
+            if (!json.ok) { el.innerText = 'Failed to list files'; return; }
+            if (json.files.length === 0) { el.innerText = 'No files uploaded yet.'; return; }
+            el.innerHTML = '';
+            json.files.forEach(f => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center justify-between p-2 bg-white/3 rounded mb-2';
+                const left = document.createElement('div');
+                left.innerText = `${f.id} • ${f.original_name} • ${f.type} • ${f.uploaded_at}`;
+                const a = document.createElement('a');
+                a.href = getApiUrl(`/api/files/${f.id}/download`);
+                a.innerText = 'Download';
+                a.className = 'ml-3 text-sky-400';
+                row.appendChild(left);
+                row.appendChild(a);
+                el.appendChild(row);
+            });
+        }
+
+        // initial load
+        refreshFiles();
+        updateLevelDisplay();
+
+        // --- Chart Configurations ---
+        const wrapLabel = (label) => {
+            if (label.length > 15) return [label.substring(0, 15), label.substring(15)];
+            return label;
+        };
+
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: '#94a3b8', font: { size: 11, weight: 'bold' } } }
+            }
+        };
+
+        // Radar Chart
+        new Chart(document.getElementById('universalRadar').getContext('2d'), {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapLabel('Network (Cisco)'),
+                    wrapLabel('Security (Fortinet)'),
+                    wrapLabel('Azure Cloud'),
+                    wrapLabel('Google AI'),
+                    wrapLabel('Hardware Support'),
+                    wrapLabel('Operational Lead')
+                ],
+                datasets: [{
+                    label: 'Professional Proficiency',
+                    data: [95, 90, 85, 92, 98, 90],
+                    backgroundColor: 'rgba(14, 165, 233, 0.2)',
+                    borderColor: '#0ea5e9',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#fff'
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    r: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        angleLines: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { display: false },
+                        pointLabels: { color: '#94a3b8', font: { weight: 'bold' } }
+                    }
+                }
+            }
+        });
+
+        // Bar Chart
+        new Chart(document.getElementById('universalImpactBar').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('Desktops (500+)'),
+                    wrapLabel('Cameras (380+)'),
+                    wrapLabel('User Support (200+)'),
+                    wrapLabel('Laptops (100+)'),
+                    wrapLabel('Total Credentials')
+                ],
+                datasets: [{
+                    label: 'Enterprise Metrics',
+                    data: [500, 380, 200, 100, profileData.totalCredentials],
+                    backgroundColor: ['#0ea5e9', '#6366f1', '#8b5cf6', '#ec4899', '#f59e0b'],
+                    borderRadius: 12
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#64748b' } },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } }
+                }
+            }
+        });
+
+        // ============================================================
+        // 🎓 CERTIFICATE CARDS SYSTEM
+        // ============================================================
+        
+        // Certificate Provider Data
+        const certificateProviders = [
+            {
+                id: 'cisco',
+                name: 'Cisco Academy',
+                icon: '🔗',
+                color: '#00bceb',
+                bgColor: 'bg-cyan-500/10',
+                borderColor: 'border-cyan-500/50',
+                hoverColor: 'hover:border-cyan-400',
+                totalCredentials: 5,
+                badgeCount: 5,
+                description: 'Networking, Hardware & AI Career Ready certifications through Cisco Networking Academy. Comprehensive training in network fundamentals, PC hardware, and modern AI technologies.',
+                skills: ['Network Fundamentals', 'IP Addressing', 'Packet Tracer', 'Hardware Assembly', 'AI Career Ready'],
+                longDescription: 'Cisco Networking Academy provides world-class networking education with hands-on experience using Packet Tracer simulation software. The program covers essential topics from basic network concepts to advanced AI integration in modern infrastructure.'
+            },
+            {
+                id: 'fortinet',
+                name: 'Fortinet',
+                icon: '🛡️',
+                color: '#c32026',
+                bgColor: 'bg-red-500/10',
+                borderColor: 'border-red-500/50',
+                hoverColor: 'hover:border-red-400',
+                totalCredentials: 2,
+                badgeCount: 2,
+                description: 'Official Security Associate certifications (FCA & FCF) validating expertise in Fortinet security solutions and network protection strategies.',
+                skills: ['Network Security', 'FortiGate', 'Threat Prevention', 'Security Fabric', 'Firewall Configuration'],
+                longDescription: 'Fortinet Certified Associate (FCA) and Fortinet Certified Foundational (FCF) certifications demonstrate proficiency in Fortinet security fabric and network protection. These credentials validate the ability to deploy and manage Fortinet security solutions effectively.'
+            },
+            {
+                id: 'google',
+                name: 'Google Cloud',
+                icon: '☁️',
+                color: '#4285f4',
+                bgColor: 'bg-blue-500/10',
+                borderColor: 'border-blue-500/50',
+                hoverColor: 'hover:border-blue-400',
+                totalCredentials: 8,
+                badgeCount: 8,
+                description: 'Generative AI Specialist track with 8 badges covering cutting-edge AI and machine learning technologies on Google Cloud Platform.',
+                skills: ['Generative AI', 'Vertex AI', 'Machine Learning', 'TensorFlow', 'NLP', 'Computer Vision', 'AI Model Deployment', 'Cloud AI Services'],
+                longDescription: 'Google Cloud Generative AI Specialist badges validate expertise in advanced AI technologies including large language models, generative AI applications, and machine learning operations on Google Cloud Platform. This specialization prepares professionals for the AI-driven future of cloud computing.'
+            },
+            {
+                id: 'microsoft',
+                name: 'Microsoft',
+                icon: '🪟',
+                color: '#f25022',
+                bgColor: 'bg-orange-500/10',
+                borderColor: 'border-orange-500/50',
+                hoverColor: 'hover:border-orange-400',
+                totalCredentials: 29,
+                badgeCount: 29,
+                description: 'Azure Fundamentals, Data Fundamentals, and AI Foundry Expert credentials demonstrating comprehensive Microsoft technology expertise.',
+                skills: ['Azure Fundamentals (AZ-900)', 'Azure Data Fundamentals (DP-900)', 'AI Foundry Expert', 'Vision AI', 'Speech AI', 'NLP', 'Azure Services', 'Cloud Architecture'],
+                longDescription: 'Microsoft certifications including Azure Fundamentals (AZ-900), Azure Data Fundamentals (DP-900), and AI Foundry Expert credentials validate comprehensive expertise in Microsoft cloud services and AI technologies. With 29 total credentials, this demonstrates mastery across the entire Microsoft technology stack.'
+            }
+        ];
+
+        // Currently selected certificate provider
+        let selectedCertProvider = null;
+
+        // Initialize Certificate Cards
+        function initCertificateCards() {
+            const container = document.getElementById('cert-cards-container');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            certificateProviders.forEach(provider => {
+                const card = document.createElement('div');
+                card.className = `cert-card glass-panel p-4 ${provider.borderColor} ${provider.hoverColor} border bg-gradient-to-br ${provider.bgColor} to-transparent`;
+                card.onclick = () => selectCertificate(provider.id);
+                card.id = `cert-card-${provider.id}`;
+                
+                card.innerHTML = `
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-3xl">${provider.icon}</span>
+                        <div>
+                            <h3 class="font-bold text-white text-sm">${provider.name}</h3>
+                            <span class="text-xs text-slate-400">${provider.badgeCount} Badges</span>
+                        </div>
+                    </div>
+                    <div class="text-2xl font-black" style="color: ${provider.color}">${provider.totalCredentials}</div>
+                    <div class="text-xs text-slate-500 mt-1">Credentials</div>
+                    <div class="flex flex-wrap gap-1 mt-3">
+                        ${provider.skills.slice(0, 3).map(skill => 
+                            `<span class="badge-pill text-xs">${skill}</span>`
+                        ).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+            
+            // Select first certificate by default
+            selectCertificate('cisco');
+        }
+
+        // Select Certificate Provider
+        function selectCertificate(providerId) {
+            const provider = certificateProviders.find(p => p.id === providerId);
+            if (!provider) return;
+            
+            selectedCertProvider = provider;
+            
+            // Update card active states
+            document.querySelectorAll('.cert-card').forEach(card => {
+                card.classList.remove('active', 'ring-2');
+            });
+            const activeCard = document.getElementById(`cert-card-${providerId}`);
+            if (activeCard) {
+                activeCard.classList.add('active', 'ring-2', provider.borderColor);
+            }
+            
+            // Update detail box
+            updateDetailBox(provider);
+        }
+
+        // Update Detail Box Content
+        function updateDetailBox(provider) {
+            // Update header
+            document.getElementById('detail-icon').textContent = provider.icon;
+            document.getElementById('detail-title').textContent = provider.name;
+            document.getElementById('detail-subtitle').textContent = `${provider.badgeCount} Professional Certifications`;
+            
+            // Update description
+            document.getElementById('detail-description').textContent = provider.longDescription;
+            
+            // Update stats
+            document.getElementById('detail-count').textContent = provider.totalCredentials;
+            document.getElementById('detail-badges').textContent = provider.badgeCount;
+            
+            // Update skills badges
+            const skillsContainer = document.getElementById('detail-skills');
+            skillsContainer.innerHTML = provider.skills.map(skill => 
+                `<span class="badge-pill" style="border: 1px solid ${provider.color}40; color: ${provider.color}">${skill}</span>`
+            ).join('');
+            
+            // Update detail box border color
+            const detailBox = document.getElementById('cert-detail-box');
+            detailBox.style.borderTop = `3px solid ${provider.color}`;
+        }
+
+        // Generate AI Advice for Selected Certificate
+        function generateCertAdvice() {
+            if (!selectedCertProvider) return;
+            
+            const prompt = `🎯 Certificate Advice: ${selectedCertProvider.name}
+
+Kyaw Phyo Myint has ${selectedCertProvider.totalCredentials} credentials from ${selectedCertProvider.name} including: ${selectedCertProvider.skills.join(', ')}.
+
+Based on this certification track:
+1. What are the key career opportunities this opens up?
+2. What additional skills should they develop to maximize these certifications?
+3. What salary range can they expect with this expertise?
+4. What next certifications would complement their existing credentials?
+5. How does this fit into their overall IT career trajectory?
+
+Provide detailed advice in Burmese (Myanmar) language with practical, actionable recommendations.`;
+            
+            callGemini(prompt);
+        }
+
+        // ============================================================
+        // 📊 DYNAMIC SKILL RADAR BASED ON CURRENT LEVEL
+        // ============================================================
+
+        // Calculate skill values based on current level
+        function getLevelBasedSkills() {
+            const baseMultiplier = currentLevel / 10; // Level 10 = 100%, Level 5 = 50%
+            const maxSkills = {
+                network: 95,
+                security: 90,
+                azure: 85,
+                googleAI: 92,
+                hardware: 98,
+                leadership: 90
+            };
+            
+            return {
+                network: Math.round(maxSkills.network * baseMultiplier),
+                security: Math.round(maxSkills.security * baseMultiplier),
+                azure: Math.round(maxSkills.azure * baseMultiplier),
+                googleAI: Math.round(maxSkills.googleAI * baseMultiplier),
+                hardware: Math.round(maxSkills.hardware * baseMultiplier),
+                leadership: Math.round(maxSkills.leadership * baseMultiplier)
+            };
+        }
+
+        // Update Radar Chart with Level-based Data
+        function updateRadarChart() {
+            const skills = getLevelBasedSkills();
+            const radarChart = Chart.getChart('universalRadar');
+            
+            if (radarChart) {
+                radarChart.data.datasets[0].data = [
+                    skills.network,
+                    skills.security,
+                    skills.azure,
+                    skills.googleAI,
+                    skills.hardware,
+                    skills.leadership
+                ];
+                radarChart.data.datasets[0].label = `Level ${currentLevel} Proficiency`;
+                radarChart.update();
+            }
+        }
+
+        // ============================================================
+        // 🤖 AI TEACHER PERSONA - ENHANCED CHAT
+        // ============================================================
+
+        // Get Teacher Persona System Prompt with Certificate Context
+        function getTeacherPersonaPrompt(userMessage = '') {
+            const levelConfig = getLevelConfig();
+            const skills = getLevelBasedSkills();
+            
+            return `မင်းက Level ${currentLevel} အလိုက် သင်ကြားပေးရမယ့် ဆရာဖြစ်တယ်။
+
+You are an AI Teacher/Career Mentor for Kyaw Phyo Myint.
+
+CURRENT USER PROFILE:
+- Name: ${profileData.name}
+- Experience: ${profileData.experience}
+- Current Level: ${currentLevel}/10 (${levelConfig.name})
+- Complexity Setting: ${levelConfig.complexity}
+- Tone: ${levelConfig.tone}
+
+CURRENT SKILLS (Level-Based):
+- Network (Cisco): ${skills.network}%
+- Security (Fortinet): ${skills.security}%
+- Azure Cloud: ${skills.azure}%
+- Google AI: ${skills.googleAI}%
+- Hardware Support: ${skills.hardware}%
+- Leadership: ${skills.leadership}%
+
+CERTIFICATIONS:
+${certificateProviders.map(p => `- ${p.name}: ${p.totalCredentials} credentials (${p.skills.join(', ')})`).join('\n')}
+
+TOTAL CREDENTIALS: ${certificateProviders.reduce((sum, p) => sum + p.totalCredentials, 0)}+ certifications
+
+IMPORTANT TEACHING PRINCIPLES:
+1. Adjust your response complexity to match Level ${currentLevel}
+2. For Levels 1-3: Use simple language, fundamentals-focused, encouraging
+3. For Levels 4-6: Moderate complexity, practical scenarios
+4. For Levels 7-9: Advanced concepts, strategic thinking
+5. For Level 10: Visionary perspective, industry leadership topics
+
+${userMessage ? `USER QUESTION: "${userMessage}"` : 'Provide career guidance based on the profile above.'}
+
+Respond in Burmese (Myanmar) language appropriate for Level ${currentLevel}. Be helpful, practical, and encouraging.`;
+        }
+
+        // Enhanced Chat Function with Teacher Persona
+        async function sendTeacherChatMessage() {
+            const inputEl = document.getElementById('chat-input');
+            const chatHistoryEl = document.getElementById('chat-history');
+            const message = inputEl.value.trim();
+            
+            if (!message) return;
+
+            // Remove initial placeholder if exists
+            if (chatHistoryEl.querySelector('.italic')) {
+                chatHistoryEl.innerHTML = '';
+            }
+
+            // Add user message with level indicator
+            const levelConfig = getLevelConfig();
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex justify-end items-start gap-2';
+            userMsg.innerHTML = `
+                <div class="px-4 py-2 bg-sky-500/30 text-sky-100 rounded-2xl rounded-tr-sm text-sm max-w-[80%]">${message}</div>
+                <div class="text-xs ${levelConfig.color} bg-white/5 px-2 py-1 rounded mt-1">Lvl ${currentLevel}</div>
+            `;
+            chatHistoryEl.appendChild(userMsg);
+
+            // Add loading indicator
+            const loadingEl = document.createElement('div');
+            loadingEl.className = 'flex justify-start';
+            loadingEl.innerHTML = `
+                <div class="px-4 py-2 bg-white/10 text-slate-400 rounded-2xl rounded-tl-sm text-sm flex items-center gap-2">
+                    <span class="animate-pulse">✨</span>
+                    <span>Level ${currentLevel} Teacher စဉ်းစားနေသည်...</span>
+                </div>
+            `;
+            chatHistoryEl.appendChild(loadingEl);
+
+            // Scroll to bottom
+            chatHistoryEl.scrollTop = chatHistoryEl.scrollHeight;
+            inputEl.value = '';
+
+            try {
+                const enhancedPrompt = getTeacherPersonaPrompt(message);
+                
+                const r = await fetch(getApiUrl('/api/gemini'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: enhancedPrompt })
+                });
+                const json = await r.json();
+                const aiText = json.result?.candidates?.[0]?.content?.parts?.[0]?.text || 'တောင်းပန်ပါတယ်၊ AI ချိတ်ဆက်ရာတွင် အမှားတက်နေပါသည်။';
+
+                // Remove loading and add AI response with Markdown rendering
+                loadingEl.remove();
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'flex justify-start items-start gap-2';
+                aiMsg.innerHTML = `
+                    <div class="text-xs ${levelConfig.color} bg-white/5 px-2 py-1 rounded mt-1">👨‍🏫 Lvl ${currentLevel}</div>
+                    <div class="px-4 py-2 bg-white/10 text-slate-200 rounded-2xl rounded-tl-sm text-sm max-w-[80%] ai-message">${marked.parse(aiText)}</div>
+                `;
+                chatHistoryEl.appendChild(aiMsg);
+
+                // Scroll to bottom
+                chatHistoryEl.scrollTop = chatHistoryEl.scrollHeight;
+            } catch (err) {
+                loadingEl.remove();
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'flex justify-start';
+                errorMsg.innerHTML = `<div class="px-4 py-2 bg-red-500/20 text-red-400 rounded-2xl rounded-tl-sm text-sm">အမှားဖြစ်နေပါသည်။</div>`;
+                chatHistoryEl.appendChild(errorMsg);
+            }
+        }
+
+        // Initialize everything on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize certificate cards
+            initCertificateCards();
+            
+            // Initialize radar chart with level-based data
+            updateRadarChart();
+            
+            // Update chat function to use teacher persona
+            window.sendChatMessage = sendTeacherChatMessage;
+        });
+
+    </script>
+</body>
+</html>
