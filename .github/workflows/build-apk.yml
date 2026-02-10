@@ -62,8 +62,10 @@ jobs:
         run: npx cap add android
 
       - name: Decode Keystore
-        if: env.KEYSTORE_FILE != ''
-        run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > android/release-keystore.jks
+        run: |
+          if [ -n "${{ secrets.KEYSTORE_FILE }}" ]; then
+            echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > android/release-keystore.jks
+          fi
         shell: bash
 
       - name: Sync Capacitor
